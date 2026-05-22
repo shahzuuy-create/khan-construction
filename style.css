@@ -510,6 +510,32 @@ position:relative;
     .nav-menu.active { right: 0; }
     .nav-list { flex-direction: column; width: 100%; text-align: center; gap: 30px; }
     .nav-cta { margin-top: 20px; }
+
+    .logo{
+font-size:22px;
+}
+
+.tagline{
+font-size:14px;
+}
+
+.hero-title{
+font-size:2rem;
+}
+
+.nav-container{
+padding:10px 15px;
+}
+
+.hamburger{
+margin-right:10px;
+font-size:30px;
+}
+
+.hero-actions{
+flex-direction:column;
+gap:15px;
+}
     
     .about-container, .why-us-container, .contact-container { grid-template-columns: 1fr; gap: 40px; }
     .experience-badge { bottom: -20px; right: 10px; padding: 20px; }
