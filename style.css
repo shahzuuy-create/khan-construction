@@ -491,7 +491,17 @@ box-shadow:0 15px 30px rgba(0,0,0,0.2);
 }
 
 @media (max-width: 768px) {
-    .hamburger { display: block; }
+    .hamburger{
+display:flex;
+align-items:center;
+justify-content:center;
+margin-right:15px;
+font-size:28px;
+cursor:pointer;
+color:white;
+z-index:1001;
+position:relative;
+}
     .nav-menu {
         position: fixed; top: 0; right: -100%; width: 300px; height: 100vh;
         background-color: var(--primary); flex-direction: column; justify-content: center;
