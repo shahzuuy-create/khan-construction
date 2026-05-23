@@ -1,81 +1,628 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-<title>Services - Khan Construction</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Services - Khan Construction</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏗️</text></svg>">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Raleway:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
-<style>
+    :root {
+      --primary: #e8a020;
+      --dark: #0a0a0a;
+      --dark2: #111111;
+      --dark3: #1a1a1a;
+      --text: #cccccc;
+      --white: #ffffff;
+    }
 
-body{
-font-family:Arial;
-background-image:url("site1.jpeg");
-background-size:cover;
-background-position:center;
-background-repeat:no-repeat;
-margin:0;
-padding:0;
-}
+    body {
+      font-family: 'Raleway', sans-serif;
+      background: var(--dark);
+      color: var(--text);
+      overflow-x: hidden;
+    }
 
-.header{
-background:#0a1f3c;
-color:white;
-padding:20px;
-text-align:center;
-}
+    /* NAVBAR */
+    .navbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      background: rgba(10,10,10,0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(232,160,32,0.2);
+      padding: 0 2rem;
+      height: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
 
-.container{
-padding:40px;
-text-align:center;
-}
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      text-decoration: none;
+      color: var(--white);
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+    }
 
-.card{
-background:white;
-padding:20px;
-margin:20px auto;
-max-width:600px;
-border-radius:10px;
-box-shadow:0 0 10px rgba(0,0,0,0.1);
-}
+    .logo span { color: var(--primary); }
+    .logo-icon { color: var(--primary); width: 28px; height: 28px; }
 
-a{
-background:orange;
-color:white;
-padding:10px 20px;
-text-decoration:none;
-border-radius:5px;
-}
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 2rem;
+      align-items: center;
+    }
 
-</style>
+    .nav-links a {
+      text-decoration: none;
+      color: var(--text);
+      font-size: 0.9rem;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      transition: color 0.3s;
+    }
 
+    .nav-links a:hover, .nav-links a.active { color: var(--primary); }
+
+    .nav-btn {
+      background: var(--primary);
+      color: var(--dark) !important;
+      padding: 0.5rem 1.2rem;
+      border-radius: 4px;
+      font-weight: 700 !important;
+    }
+
+    /* HERO */
+    .page-hero {
+      min-height: 40vh;
+      background: linear-gradient(135deg, #0a0a0a 0%, #1a1200 50%, #0a0a0a 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding-top: 70px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .page-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at center, rgba(232,160,32,0.15) 0%, transparent 70%);
+    }
+
+    .page-hero-content { position: relative; z-index: 1; }
+
+    .page-hero span {
+      color: var(--primary);
+      font-size: 0.85rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+
+    .page-hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      color: var(--white);
+      margin: 0.5rem 0;
+    }
+
+    .breadcrumb {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      margin-top: 1rem;
+      font-size: 0.9rem;
+    }
+
+    .breadcrumb a { color: var(--primary); text-decoration: none; }
+    .breadcrumb span { color: var(--text); }
+
+    /* SECTIONS */
+    .section { padding: 5rem 2rem; }
+    .container { max-width: 1100px; margin: 0 auto; }
+
+    .section-label {
+      color: var(--primary);
+      font-size: 0.8rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      font-weight: 600;
+      display: block;
+      margin-bottom: 0.8rem;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 3vw, 2.8rem);
+      color: var(--white);
+      line-height: 1.2;
+      margin-bottom: 1rem;
+    }
+
+    .section-subtitle {
+      font-size: 1rem;
+      line-height: 1.7;
+      max-width: 600px;
+      margin: 0 auto 3rem;
+    }
+
+    /* SERVICES GRID */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+
+    .service-card {
+      background: var(--dark3);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 10px;
+      padding: 2.5rem 2rem;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .service-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--primary);
+      transform: scaleX(0);
+      transition: transform 0.3s ease;
+    }
+
+    .service-card:hover {
+      border-color: rgba(232,160,32,0.3);
+      transform: translateY(-8px);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+    }
+
+    .service-card:hover::after { transform: scaleX(1); }
+
+    .service-icon {
+      width: 60px;
+      height: 60px;
+      background: rgba(232,160,32,0.1);
+      border: 1px solid rgba(232,160,32,0.3);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+      transition: background 0.3s;
+    }
+
+    .service-card:hover .service-icon {
+      background: rgba(232,160,32,0.2);
+    }
+
+    .service-icon i { color: var(--primary); width: 28px; height: 28px; }
+
+    .service-card h3 {
+      font-family: 'Playfair Display', serif;
+      color: var(--white);
+      font-size: 1.3rem;
+      margin-bottom: 1rem;
+    }
+
+    .service-card p {
+      font-size: 0.95rem;
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+    }
+
+    .service-features {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .service-features li {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.88rem;
+      color: var(--text);
+    }
+
+    .service-features li i { color: var(--primary); width: 14px; height: 14px; flex-shrink: 0; }
+
+    /* PROCESS */
+    .process-section {
+      background: var(--dark2);
+      padding: 5rem 2rem;
+    }
+
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2rem;
+      margin-top: 3rem;
+      position: relative;
+    }
+
+    .process-grid::before {
+      content: '';
+      position: absolute;
+      top: 35px;
+      left: 12%;
+      right: 12%;
+      height: 2px;
+      background: linear-gradient(90deg, var(--primary), rgba(232,160,32,0.2));
+    }
+
+    .process-step {
+      text-align: center;
+      position: relative;
+    }
+
+    .step-num {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      background: var(--dark3);
+      border: 2px solid var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      color: var(--primary);
+      font-weight: 700;
+      margin: 0 auto 1.5rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .process-step h4 {
+      color: var(--white);
+      font-size: 1rem;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+    }
+
+    .process-step p { font-size: 0.88rem; line-height: 1.6; }
+
+    /* WHY US */
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+
+    .why-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      padding: 1.5rem;
+      background: var(--dark3);
+      border-radius: 8px;
+      border: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .why-icon {
+      width: 44px;
+      height: 44px;
+      background: rgba(232,160,32,0.1);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .why-icon i { color: var(--primary); width: 20px; height: 20px; }
+
+    .why-item h4 {
+      color: var(--white);
+      font-size: 0.95rem;
+      margin-bottom: 0.3rem;
+      font-weight: 600;
+    }
+
+    .why-item p { font-size: 0.85rem; line-height: 1.6; }
+
+    /* CTA */
+    .cta-section {
+      background: linear-gradient(135deg, #1a1200, #0a0a0a);
+      padding: 5rem 2rem;
+      text-align: center;
+      border-top: 1px solid rgba(232,160,32,0.2);
+    }
+
+    .cta-section h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 3vw, 2.5rem);
+      color: var(--white);
+      margin-bottom: 1rem;
+    }
+
+    .cta-section p { margin-bottom: 2rem; font-size: 1.05rem; }
+
+    .btn {
+      display: inline-block;
+      padding: 0.9rem 2.5rem;
+      border-radius: 4px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      text-decoration: none;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      transition: all 0.3s;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: var(--dark);
+    }
+
+    .btn-primary:hover {
+      background: #f5b030;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(232,160,32,0.4);
+    }
+
+    /* FOOTER */
+    footer {
+      background: #050505;
+      padding: 2rem;
+      text-align: center;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      color: #666;
+      font-size: 0.85rem;
+    }
+
+    footer a { color: var(--primary); text-decoration: none; }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
+      .process-grid { grid-template-columns: repeat(2, 1fr); }
+      .process-grid::before { display: none; }
+      .why-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 600px) {
+      .services-grid, .why-grid { grid-template-columns: 1fr; }
+      .process-grid { grid-template-columns: repeat(2, 1fr); }
+      .nav-links { display: none; }
+    }
+  </style>
 </head>
-
 <body>
 
-<div class="header">
-<h1>Khan Construction Services</h1>
-</div>
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <a href="index.html" class="logo">
+      <i data-lucide="hard-hat" class="logo-icon"></i>
+      Khan <span>Construction</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="services.html" class="active">Services</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="index.html#contact" class="nav-btn">Get a Quote</a></li>
+    </ul>
+  </header>
 
-<div class="container">
+  <!-- PAGE HERO -->
+  <section class="page-hero">
+    <div class="page-hero-content">
+      <span>What We Offer</span>
+      <h1>Our Services</h1>
+      <div class="breadcrumb">
+        <a href="index.html">Home</a>
+        <span>›</span>
+        <span>Services</span>
+      </div>
+    </div>
+  </section>
 
-<div class="card">
-<h2>Residential Construction</h2>
-<p>Premium homes and villas.</p>
-</div>
+  <!-- SERVICES -->
+  <section class="section">
+    <div class="container">
+      <div style="text-align:center">
+        <span class="section-label">Our Expertise</span>
+        <h2 class="section-title">Comprehensive Engineering Solutions</h2>
+        <p class="section-subtitle">From initial blueprint to final handover, we provide end-to-end construction solutions tailored to your unique requirements.</p>
+      </div>
+      <div class="services-grid">
 
-<div class="card">
-<h2>Commercial Projects</h2>
-<p>Office and business buildings.</p>
-</div>
+        <div class="service-card">
+          <div class="service-icon"><i data-lucide="home"></i></div>
+          <h3>Residential Construction</h3>
+          <p>We build luxury villas, modern apartments, and custom homes designed for unparalleled comfort, elegance, and durability.</p>
+          <ul class="service-features">
+            <li><i data-lucide="check"></i> Custom home design & build</li>
+            <li><i data-lucide="check"></i> Luxury villas & bungalows</li>
+            <li><i data-lucide="check"></i> Apartment complexes</li>
+            <li><i data-lucide="check"></i> Premium interior finishing</li>
+          </ul>
+        </div>
 
-<div class="card">
-<h2>Infrastructure</h2>
-<p>Roads and structural engineering.</p>
-</div>
+        <div class="service-card">
+          <div class="service-icon"><i data-lucide="building-2"></i></div>
+          <h3>Commercial Construction</h3>
+          <p>State-of-the-art office spaces, shopping complexes, and industrial facilities engineered for business success and longevity.</p>
+          <ul class="service-features">
+            <li><i data-lucide="check"></i> Office buildings & towers</li>
+            <li><i data-lucide="check"></i> Shopping complexes</li>
+            <li><i data-lucide="check"></i> Industrial facilities</li>
+            <li><i data-lucide="check"></i> Warehouses & factories</li>
+          </ul>
+        </div>
 
-<a href="index.html">Back Home</a>
+        <div class="service-card">
+          <div class="service-icon"><i data-lucide="wrench"></i></div>
+          <h3>Renovation Work</h3>
+          <p>Breathing new life into existing structures with modern architectural upgrades, structural enhancements, and fresh interiors.</p>
+          <ul class="service-features">
+            <li><i data-lucide="check"></i> Full building renovation</li>
+            <li><i data-lucide="check"></i> Interior remodeling</li>
+            <li><i data-lucide="check"></i> Structural upgrades</li>
+            <li><i data-lucide="check"></i> Facade improvement</li>
+          </ul>
+        </div>
 
-</div>
+        <div class="service-card">
+          <div class="service-icon"><i data-lucide="triangle"></i></div>
+          <h3>Structural Engineering</h3>
+          <p>Advanced structural analysis, seismic design, and complex architectural engineering for absolute stability and safety.</p>
+          <ul class="service-features">
+            <li><i data-lucide="check"></i> Structural analysis & design</li>
+            <li><i data-lucide="check"></i> Foundation engineering</li>
+            <li><i data-lucide="check"></i> Seismic safety design</li>
+            <li><i data-lucide="check"></i> Load-bearing calculations</li>
+          </ul>
+        </div>
 
+        <div class="service-card">
+          <div class="service-icon"><i data-lucide="ruler"></i></div>
+          <h3>Project Planning</h3>
+          <p>Comprehensive project planning, budgeting, and management services to ensure your project runs smoothly from start to finish.</p>
+          <ul class="service-features">
+            <li><i data-lucide="check"></i> Site survey & analysis</li>
+            <li><i data-lucide="check"></i> Budget estimation</li>
+            <li><i data-lucide="check"></i> Timeline planning</li>
+            <li><i data-lucide="check"></i> Permit & approval support</li>
+          </ul>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon"><i data-lucide="shield-check"></i></div>
+          <h3>Quality & Safety</h3>
+          <p>Rigorous quality control and strict safety standards on every project, ensuring the highest level of workmanship and compliance.</p>
+          <ul class="service-features">
+            <li><i data-lucide="check"></i> Material quality testing</li>
+            <li><i data-lucide="check"></i> Safety inspections</li>
+            <li><i data-lucide="check"></i> Building code compliance</li>
+            <li><i data-lucide="check"></i> Post-completion support</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section class="process-section">
+    <div class="container">
+      <div style="text-align:center">
+        <span class="section-label">How We Work</span>
+        <h2 class="section-title">Our Simple Process</h2>
+      </div>
+      <div class="process-grid">
+        <div class="process-step">
+          <div class="step-num">1</div>
+          <h4>Consultation</h4>
+          <p>We meet with you to understand your vision, requirements, and budget in detail.</p>
+        </div>
+        <div class="process-step">
+          <div class="step-num">2</div>
+          <h4>Planning & Design</h4>
+          <p>Our engineers create detailed plans, blueprints, and accurate cost estimates.</p>
+        </div>
+        <div class="process-step">
+          <div class="step-num">3</div>
+          <h4>Construction</h4>
+          <p>We execute the project with skilled workers, quality materials, and strict timelines.</p>
+        </div>
+        <div class="process-step">
+          <div class="step-num">4</div>
+          <h4>Handover</h4>
+          <p>Final inspection, quality check, and smooth handover of your completed project.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY US -->
+  <section class="section">
+    <div class="container">
+      <div style="text-align:center">
+        <span class="section-label">Why Choose Us</span>
+        <h2 class="section-title">What Sets Us Apart</h2>
+      </div>
+      <div class="why-grid">
+        <div class="why-item">
+          <div class="why-icon"><i data-lucide="award"></i></div>
+          <div>
+            <h4>15+ Years Experience</h4>
+            <p>Proven track record of delivering quality projects since 2015.</p>
+          </div>
+        </div>
+        <div class="why-item">
+          <div class="why-icon"><i data-lucide="clock"></i></div>
+          <div>
+            <h4>On-Time Delivery</h4>
+            <p>We respect your time and always deliver within the agreed schedule.</p>
+          </div>
+        </div>
+        <div class="why-item">
+          <div class="why-icon"><i data-lucide="users"></i></div>
+          <div>
+            <h4>Expert Team</h4>
+            <p>15+ certified engineers and skilled construction professionals.</p>
+          </div>
+        </div>
+        <div class="why-item">
+          <div class="why-icon"><i data-lucide="shield"></i></div>
+          <div>
+            <h4>Safety Standards</h4>
+            <p>Strict safety protocols followed on every single project site.</p>
+          </div>
+        </div>
+        <div class="why-item">
+          <div class="why-icon"><i data-lucide="indian-rupee"></i></div>
+          <div>
+            <h4>Transparent Pricing</h4>
+            <p>No hidden costs — clear and honest quotations from day one.</p>
+          </div>
+        </div>
+        <div class="why-item">
+          <div class="why-icon"><i data-lucide="star"></i></div>
+          <div>
+            <h4>Quality Materials</h4>
+            <p>We only use premium, certified materials for lasting durability.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="container">
+      <h2>Need a Construction Service?</h2>
+      <p>Contact us today for a free consultation and accurate quotation from our expert team.</p>
+      <a href="index.html#contact" class="btn btn-primary">Get a Free Quote</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2026 Khan Construction. All Rights Reserved. | <a href="index.html">Back to Home</a></p>
+  </footer>
+
+  <script>lucide.createIcons();</script>
 </body>
-
 </html>
