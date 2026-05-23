@@ -1647,8 +1647,8 @@ headers:{
 mode:"no-cors"
 });
         if (res.ok) {
-          document.getElementById('formSuccess').classList.add('show');
-          form.reset();
+          alert("✅ Quote Request Submitted Successfully!");
+form.reset();
         }
       } catch(err) {}
       btn.innerHTML = '<i data-lucide="send"></i> Send Message';
