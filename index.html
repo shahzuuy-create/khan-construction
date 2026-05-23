@@ -1638,13 +1638,13 @@
       try {
         const res = await fetch("https://script.google.com/macros/s/AKfycbwlaiFEW5nuwB4dkGcNVxOrJG9dMsHqMQmsW6pKZDDULsSXhZvQRNSPt6ZgeBBphz1n/exec",{
         method:"POST",
+        mode:"no-cors",
 body:JSON.stringify({
 name:form.name.value,
 email:form.email.value,
 phone:form.phone.value,
 message:form.message.value
 })
-
 });
           alert("✅ Quote Request Submitted Successfully!");
 form.reset();
