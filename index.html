@@ -1655,6 +1655,23 @@ console.log(err);
     btn.innerHTML = '<i data-lucide="send"></i> Send Message';
 lucide.createIcons();
     });
+    window.addEventListener("load", function(){
+
+const preloader = document.querySelector(".preloader");
+
+if(preloader){
+
+preloader.classList.add("hidden");
+
+setTimeout(function(){
+
+preloader.style.display="none";
+
+},600);
+
+}
+
+});
 </script>
 
 </body>
