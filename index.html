@@ -620,41 +620,69 @@
     iframe.style.display = 'none';
     document.body.appendChild(iframe);
 
-    form.addEventListener('submit', function(e) {
-      e.preventDefault();
-      const btn = from.querySelector('button');
-      btn.textContent = 'Sending...';
-      btn.disabled = true;
+    form.addEventListener('submit', function(e){
 
-      const scriptURL = 'https://script.google.com/macros/s/AKfycbxg6IOsu-UCpKS1ad35TJxS5mnVNOxX5XCvBU2tHcHcJTzx-WC6h0MGPHQsPH63q1tX/exec';
+e.preventDefault();
 
-      const tempForm = document.createElement('form');
-      tempForm.method = 'POST';
-      tempForm.action = scriptURL;
-      tempForm.target = 'submit-frame';
-      tempForm.style.display = 'none';
+const btn = form.querySelector('button');
 
-      ['name','email','phone','service','message'].forEach(field => {
-        const el = from.queryselector('[name="' + field + '"]');
-        const input = document.createElement('input');
-        input.type = 'hidden';
-        input.name = field;
-        input.value = el ? el.value : '';
-        tempForm.appendChild(input);
-      });
+btn.textContent='Sending...';
 
-      document.body.appendChild(tempForm);
-      tempForm.submit();
-      document.body.removeChild(tempForm);
+btn.disabled=true;
 
-      setTimeout(() => {
-        document.getElementById('formSuccess').classList.add('show');
-        form.reset();
-        btn.innerHTML = '<i data-lucide="send"></i> Send Message';
-        btn.disabled = false;
-        lucide.createIcons();
-      }, 1500);
-    });
+const scriptURL='https://script.google.com/macros/s/AKfycbw9nKTbxlpKoCTIkquujLh4Xd4sIILSP4cE2TeQ25ECXnvKhkW5Pv29FOYXVBsEZ2jO/exec';
+
+const tempForm=document.createElement('form');
+
+tempForm.method='POST';
+
+tempForm.action=scriptURL;
+
+tempForm.target='submit-frame';
+
+tempForm.style.display='none';
+
+['name','email','phone','service','message']
+.forEach(field=>{
+
+const el=form.querySelector(
+'[name="'+field+'"]'
+);
+
+const input=
+document.createElement('input');
+
+input.type='hidden';
+
+input.name=field;
+
+input.value=el?el.value:'';
+
+tempForm.appendChild(input);
+
+});
+
+document.body.appendChild(tempForm);
+
+tempForm.submit();
+
+document.body.removeChild(tempForm);
+
+setTimeout(()=>{
+
+document
+.getElementById('formSuccess')
+.classList.add('show');
+
+form.reset();
+
+btn.textContent='Send Message';
+
+btn.disabled=false;
+
+},1500);
+
+});
   </script>
 </body>
 </html>
