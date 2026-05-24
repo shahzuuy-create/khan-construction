@@ -1969,9 +1969,14 @@
 
     // Preloader
     window.addEventListener('load', () => {
-      setTimeout(() => {
-        document.getElementById('preloader').classList.add('hidden');
-      }, 500);
+  document.getElementById('preloader').classList.add('hidden');
+});
+
+// Backup - force hide after 3 seconds no matter what
+setTimeout(() => {
+  const p = document.getElementById('preloader');
+  if (p) p.classList.add('hidden');
+}, 3000);
     });
 
     // Navbar scroll
