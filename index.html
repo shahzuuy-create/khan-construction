@@ -394,11 +394,11 @@
       <div class="projects-grid">
         <div class="proj-card reveal" data-cat="residential">
           <div class="proj-img-wrap" onclick="openLB(this)">
-            <img src="site1.jpeg" alt="Luxury Villa Nagpur" class="proj-img">
+            <img src="site1.jpeg" alt="Luxury Apertment Nagpur" class="proj-img">
             <span class="proj-badge">Residential</span>
             <div class="zoom-btn"><i data-lucide="zoom-in"></i></div>
           </div>
-          <div class="proj-info"><h3>Luxury Villa – Nagpur</h3><p>Premium custom-built villa with modern architecture and high-end finishes for ultimate comfort.</p>
+          <div class="proj-info"><h3>Luxury Apertment – Nagpur</h3><p>Premium custom-built villa with modern architecture and high-end finishes for ultimate comfort.</p>
             <div class="proj-meta"><div class="proj-meta-item"><i data-lucide="map-pin"></i> Nagpur</div><div class="proj-meta-item"><i data-lucide="calendar"></i> 2023</div><div class="proj-meta-item"><i data-lucide="check-circle"></i> Completed</div></div>
           </div>
         </div>
@@ -635,7 +635,8 @@
       tempForm.style.display = 'none';
 
       ['name','email','phone','service','message'].forEach(field => {
-        const el = form.querySelector('[name=' + field + ']');
+        const el =
+document.getElementById(field);
         const input = document.createElement('input');
         input.type = 'hidden';
         input.name = field;
