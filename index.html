@@ -1028,6 +1028,48 @@
 
     .whatsapp-btn i { color: white; width: 26px; height: 26px; }
 
+
+    /* ===================== 3D HERO ===================== */
+    #vanta-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+
+    .hero-3d-model {
+      position: absolute;
+      right: 5%;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 420px;
+      height: 420px;
+      z-index: 2;
+      animation: float3d 4s ease-in-out infinite;
+    }
+
+    @keyframes float3d {
+      0%, 100% { transform: translateY(-50%) translateY(0px) rotateY(0deg); }
+      50% { transform: translateY(-50%) translateY(-20px) rotateY(5deg); }
+    }
+
+    /* 3D TILT ON CARDS */
+    .tilt-card {
+      transform-style: preserve-3d;
+      transition: transform 0.15s ease;
+    }
+
+    .tilt-card:hover {
+      transform: none !important;
+    }
+
+    /* Particle overlay */
+    .hero-particles {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+    }
+
     /* ===================== ANIMATIONS ===================== */
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(30px); }
@@ -1080,18 +1122,137 @@
       .hero-stats { flex-wrap: wrap; gap: 1.5rem; }
       .footer-grid { grid-template-columns: 1fr; }
     }
+
+    /* ===================== LIGHTBOX ===================== */
+    .lightbox-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.95);
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+
+    .lightbox-overlay.active {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .lightbox-img {
+      max-width: 90vw;
+      max-height: 85vh;
+      object-fit: contain;
+      border-radius: 8px;
+      transform: scale(0.8);
+      transition: transform 0.3s ease;
+      box-shadow: 0 25px 80px rgba(0,0,0,0.8);
+    }
+
+    .lightbox-overlay.active .lightbox-img {
+      transform: scale(1);
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 1.5rem;
+      right: 1.5rem;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: rgba(232,160,32,0.2);
+      border: 1px solid rgba(232,160,32,0.4);
+      color: var(--primary);
+      font-size: 1.5rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s;
+    }
+
+    .lightbox-close:hover {
+      background: var(--primary);
+      color: var(--dark);
+    }
+
+    .lightbox-caption {
+      position: absolute;
+      bottom: 1.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      color: var(--white);
+      font-size: 0.95rem;
+      font-family: "Playfair Display", serif;
+      background: rgba(0,0,0,0.5);
+      padding: 0.5rem 1.5rem;
+      border-radius: 50px;
+      white-space: nowrap;
+    }
+
+    /* Zoom icon on project images */
+    .project-img-wrap::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0);
+      transition: background 0.3s;
+      cursor: pointer;
+    }
+
+    .project-img-wrap:hover::after {
+      background: rgba(0,0,0,0.3);
+    }
+
+    .zoom-icon {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0);
+      width: 50px;
+      height: 50px;
+      background: var(--primary);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 2;
+      transition: transform 0.3s ease;
+      cursor: pointer;
+      pointer-events: none;
+    }
+
+    .zoom-icon i { color: var(--dark); width: 22px; height: 22px; }
+
+    .project-img-wrap:hover .zoom-icon {
+      transform: translate(-50%, -50%) scale(1);
+    }
+
+
+    /* ===================== LIGHTBOX ===================== */
+    .lightbox-overlay { position:fixed; inset:0; background:rgba(0,0,0,0.95); z-index:9999; display:flex; align-items:center; justify-content:center; opacity:0; pointer-events:none; transition:opacity 0.3s; }
+    .lightbox-overlay.active { opacity:1; pointer-events:all; }
+    .lightbox-img { max-width:90vw; max-height:85vh; object-fit:contain; border-radius:8px; box-shadow:0 25px 80px rgba(0,0,0,0.8); transform:scale(0.8); transition:transform 0.3s; }
+    .lightbox-overlay.active .lightbox-img { transform:scale(1); }
+    .lightbox-close { position:absolute; top:1.5rem; right:1.5rem; width:48px; height:48px; border-radius:50%; background:rgba(232,160,32,0.2); border:2px solid rgba(232,160,32,0.4); color:#e8a020; font-size:1.8rem; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:all 0.3s; }
+    .lightbox-close:hover { background:#e8a020; color:#0a0a0a; }
+    .lightbox-caption { position:absolute; bottom:2rem; left:50%; transform:translateX(-50%); color:#fff; font-family:"Playfair Display",serif; font-size:1rem; background:rgba(0,0,0,0.6); padding:0.5rem 1.5rem; border-radius:50px; white-space:nowrap; }
+    .zoom-icon { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%) scale(0); width:52px; height:52px; background:#e8a020; border-radius:50%; display:flex; align-items:center; justify-content:center; z-index:2; transition:transform 0.3s; cursor:pointer; pointer-events:none; }
+    .zoom-icon i { color:#0a0a0a; width:24px; height:24px; }
+    .project-img-wrap:hover .zoom-icon { transform:translate(-50%,-50%) scale(1); }
+
   </style>
 </head>
 <body>
 
   <!-- PRELOADER -->
   <div class="preloader" id="preloader">
-  <div class="preloader-logo">
-    Khan <span>Construction</span>
+    <div class="preloader-logo">Khan <span>Construction</span></div>
+    <div class="loader-bar"></div>
   </div>
-
-  <div class="loader-bar"></div>
-</div>
 
   <!-- NAVBAR -->
   <header class="navbar" id="navbar">
@@ -1118,6 +1279,8 @@
   <!-- HERO -->
   <section class="hero" id="home">
     <div class="hero-bg"></div>
+    <canvas id="particleCanvas" style="position:absolute;inset:0;z-index:1;pointer-events:none;"></canvas>
+    <canvas id="building3d" class="hero-3d-model"></canvas>
     <div class="hero-overlay"></div>
     <div class="hero-content">
       <div class="hero-badge"><i data-lucide="award"></i> Trusted Since 2015 — Nagpur, Maharashtra</div>
@@ -1188,37 +1351,37 @@
         <p style="max-width:580px;margin:0 auto;">From initial blueprint to final handover, we provide end-to-end solutions tailored to your unique construction requirements.</p>
       </div>
       <div class="services-grid">
-        <div class="service-card reveal">
+        <div class="service-card reveal tilt-card">
           <div class="service-icon"><i data-lucide="home"></i></div>
           <h3>Residential Construction</h3>
           <p>Luxury villas, modern apartments, and custom homes designed for unparalleled comfort, elegance, and lasting durability.</p>
           <a href="services.html" class="service-card-cta">Learn More <i data-lucide="arrow-right"></i></a>
         </div>
-        <div class="service-card reveal">
+        <div class="service-card reveal tilt-card">
           <div class="service-icon"><i data-lucide="building-2"></i></div>
           <h3>Commercial Construction</h3>
           <p>State-of-the-art office spaces, shopping complexes, and industrial facilities engineered for business success.</p>
           <a href="services.html" class="service-card-cta">Learn More <i data-lucide="arrow-right"></i></a>
         </div>
-        <div class="service-card reveal">
+        <div class="service-card reveal tilt-card">
           <div class="service-icon"><i data-lucide="wrench"></i></div>
           <h3>Renovation Work</h3>
           <p>Breathing new life into existing structures with modern architectural upgrades and structural enhancements.</p>
           <a href="services.html" class="service-card-cta">Learn More <i data-lucide="arrow-right"></i></a>
         </div>
-        <div class="service-card reveal">
+        <div class="service-card reveal tilt-card">
           <div class="service-icon"><i data-lucide="triangle"></i></div>
           <h3>Structural Engineering</h3>
           <p>Advanced structural analysis, seismic design, and complex architectural engineering for absolute stability.</p>
           <a href="services.html" class="service-card-cta">Learn More <i data-lucide="arrow-right"></i></a>
         </div>
-        <div class="service-card reveal">
+        <div class="service-card reveal tilt-card">
           <div class="service-icon"><i data-lucide="ruler"></i></div>
           <h3>Project Planning</h3>
           <p>Comprehensive planning, budgeting, and management services to ensure your project runs smoothly from start to finish.</p>
           <a href="services.html" class="service-card-cta">Learn More <i data-lucide="arrow-right"></i></a>
         </div>
-        <div class="service-card reveal" style="background: rgba(232,160,32,0.06); border-color: rgba(232,160,32,0.2);">
+        <div class="service-card reveal tilt-card" style="background: rgba(232,160,32,0.06); border-color: rgba(232,160,32,0.2);">
           <div class="service-icon"><i data-lucide="message-circle"></i></div>
           <h3>Need a Custom Solution?</h3>
           <p>Our expert team is ready to analyze your unique project requirements and provide a tailored solution today.</p>
@@ -1261,7 +1424,7 @@
     <div class="container">
       <div class="whyus-grid">
         <div class="whyus-img reveal">
-          <img src="proj_struct.png" alt="Structural Engineering Framework">
+          <img src="site2.jpeg" alt="Khan Construction Site">
         </div>
         <div class="reveal">
           <span class="section-label">Why Choose Us</span>
@@ -1319,8 +1482,8 @@
         <button class="filter-btn" onclick="filterProjects('renovation', this)">Renovation</button>
       </div>
       <div class="projects-grid">
-        <div class="project-card reveal" data-cat="residential">
-          <div class="project-img-wrap">
+        <div class="project-card reveal tilt-card" data-cat="residential">
+          <div class="project-img-wrap" onclick="openLightbox(this)">
             <img src="site1.jpeg" alt="Luxury Villa Nagpur">
             <span class="proj-badge">Residential</span>
           </div>
@@ -1334,8 +1497,8 @@
             </div>
           </div>
         </div>
-        <div class="project-card reveal" data-cat="commercial">
-          <div class="project-img-wrap">
+        <div class="project-card reveal tilt-card" data-cat="commercial">
+          <div class="project-img-wrap" onclick="openLightbox(this)">
             <img src="site2.jpeg" alt="Office Complex Nagpur">
             <span class="proj-badge">Commercial</span>
           </div>
@@ -1349,8 +1512,8 @@
             </div>
           </div>
         </div>
-        <div class="project-card reveal" data-cat="commercial">
-          <div class="project-img-wrap">
+        <div class="project-card reveal tilt-card" data-cat="commercial">
+          <div class="project-img-wrap" onclick="openLightbox(this)">
             <img src="site3.jpeg" alt="City Commercial Building">
             <span class="proj-badge">Commercial</span>
           </div>
@@ -1364,8 +1527,8 @@
             </div>
           </div>
         </div>
-        <div class="project-card reveal" data-cat="residential">
-          <div class="project-img-wrap">
+        <div class="project-card reveal tilt-card" data-cat="residential">
+          <div class="project-img-wrap" onclick="openLightbox(this)">
             <img src="site4.jpeg" alt="Luxury Apartment Nagpur">
             <span class="proj-badge">Residential</span>
           </div>
@@ -1391,7 +1554,7 @@
         <h2 class="section-title">What Our Clients Say</h2>
       </div>
       <div class="testimonials-grid">
-        <div class="testimonial-card reveal">
+        <div class="testimonial-card reveal tilt-card">
           <div class="quote-icon">"</div>
           <div class="stars">
             <i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i>
@@ -1405,7 +1568,7 @@
             </div>
           </div>
         </div>
-        <div class="testimonial-card reveal">
+        <div class="testimonial-card reveal tilt-card">
           <div class="quote-icon">"</div>
           <div class="stars">
             <i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i>
@@ -1419,7 +1582,7 @@
             </div>
           </div>
         </div>
-        <div class="testimonial-card reveal">
+        <div class="testimonial-card reveal tilt-card">
           <div class="quote-icon">"</div>
           <div class="stars">
             <i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i>
@@ -1574,6 +1737,20 @@
     </div>
   </footer>
 
+
+  <!-- LIGHTBOX -->
+  <div class="lightbox-overlay" id="lightbox" onclick="closeLightbox(event)">
+    <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
+    <img class="lightbox-img" id="lightboxImg" src="" alt="">
+    <div class="lightbox-caption" id="lightboxCaption"></div>
+  </div>
+
+  <!-- LIGHTBOX -->
+  <div class="lightbox-overlay" id="lightbox" onclick="closeLightbox(event)">
+    <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
+    <img class="lightbox-img" id="lightboxImg" src="" alt="">
+    <div class="lightbox-caption" id="lightboxCaption"></div>
+  </div>
   <!-- WHATSAPP -->
   <a href="https://wa.me/918793833878" class="whatsapp-btn" target="_blank" title="Chat on WhatsApp">
     <i data-lucide="message-circle"></i>
@@ -1581,6 +1758,214 @@
 
   <script>
     lucide.createIcons();
+
+    // ===== CANVAS PARTICLES =====
+    const pCanvas = document.getElementById('particleCanvas');
+    const pCtx = pCanvas.getContext('2d');
+    let particles = [];
+
+    function resizeParticles() {
+      pCanvas.width = window.innerWidth;
+      pCanvas.height = window.innerHeight;
+    }
+    resizeParticles();
+    window.addEventListener('resize', resizeParticles);
+
+    for (let i = 0; i < 80; i++) {
+      particles.push({
+        x: Math.random() * window.innerWidth,
+        y: Math.random() * window.innerHeight,
+        vx: (Math.random() - 0.5) * 0.5,
+        vy: (Math.random() - 0.5) * 0.5,
+        r: Math.random() * 2 + 1
+      });
+    }
+
+    function drawParticles() {
+      pCtx.clearRect(0, 0, pCanvas.width, pCanvas.height);
+      particles.forEach(p => {
+        p.x += p.vx; p.y += p.vy;
+        if (p.x < 0) p.x = pCanvas.width;
+        if (p.x > pCanvas.width) p.x = 0;
+        if (p.y < 0) p.y = pCanvas.height;
+        if (p.y > pCanvas.height) p.y = 0;
+        pCtx.beginPath();
+        pCtx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        pCtx.fillStyle = 'rgba(232,160,32,0.6)';
+        pCtx.fill();
+      });
+      // Draw lines between close particles
+      for (let i = 0; i < particles.length; i++) {
+        for (let j = i + 1; j < particles.length; j++) {
+          const dx = particles[i].x - particles[j].x;
+          const dy = particles[i].y - particles[j].y;
+          const dist = Math.sqrt(dx*dx + dy*dy);
+          if (dist < 120) {
+            pCtx.beginPath();
+            pCtx.moveTo(particles[i].x, particles[i].y);
+            pCtx.lineTo(particles[j].x, particles[j].y);
+            pCtx.strokeStyle = `rgba(232,160,32,${0.15 * (1 - dist/120)})`;
+            pCtx.lineWidth = 0.5;
+            pCtx.stroke();
+          }
+        }
+      }
+      requestAnimationFrame(drawParticles);
+    }
+    drawParticles();
+
+    // ===== 3D ROTATING BUILDING =====
+    (function() {
+      const canvas = document.getElementById('building3d');
+      if (!canvas) return;
+      const scene = new THREE.Scene();
+      const camera = new THREE.PerspectiveCamera(45, 1, 0.1, 1000);
+      const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+      renderer.setSize(420, 420);
+      renderer.setPixelRatio(window.devicePixelRatio);
+
+      // Ambient light
+      scene.add(new THREE.AmbientLight(0xffffff, 0.4));
+
+      // Gold directional light
+      const dirLight = new THREE.DirectionalLight(0xe8a020, 1.5);
+      dirLight.position.set(5, 10, 5);
+      scene.add(dirLight);
+
+      // White fill light
+      const fillLight = new THREE.DirectionalLight(0xffffff, 0.5);
+      fillLight.position.set(-5, 5, -5);
+      scene.add(fillLight);
+
+      const gold = new THREE.MeshStandardMaterial({ color: 0xe8a020, metalness: 0.8, roughness: 0.2 });
+      const silver = new THREE.MeshStandardMaterial({ color: 0x888888, metalness: 0.9, roughness: 0.1 });
+      const dark = new THREE.MeshStandardMaterial({ color: 0x1a1a1a, metalness: 0.5, roughness: 0.3 });
+      const glass = new THREE.MeshStandardMaterial({ color: 0x88ccff, metalness: 0.1, roughness: 0.0, transparent: true, opacity: 0.6 });
+
+      const group = new THREE.Group();
+
+      // Main tower base
+      const base = new THREE.Mesh(new THREE.BoxGeometry(1.8, 0.3, 1.8), dark);
+      base.position.y = -2.5;
+      group.add(base);
+
+      // Main tower body
+      const tower = new THREE.Mesh(new THREE.BoxGeometry(1.4, 4, 1.4), silver);
+      tower.position.y = -0.3;
+      group.add(tower);
+
+      // Glass windows on tower
+      for (let i = 0; i < 5; i++) {
+        const win = new THREE.Mesh(new THREE.BoxGeometry(1.1, 0.5, 0.05), glass);
+        win.position.set(0, -1.8 + i * 0.8, 0.73);
+        group.add(win);
+        const win2 = win.clone();
+        win2.position.z = -0.73;
+        group.add(win2);
+      }
+
+      // Gold trim lines on tower
+      for (let i = 0; i < 3; i++) {
+        const trim = new THREE.Mesh(new THREE.BoxGeometry(1.45, 0.06, 1.45), gold);
+        trim.position.y = -1.5 + i * 1.2;
+        group.add(trim);
+      }
+
+      // Secondary smaller tower
+      const tower2 = new THREE.Mesh(new THREE.BoxGeometry(0.7, 2.5, 0.7), dark);
+      tower2.position.set(1.1, -0.9, 0);
+      group.add(tower2);
+
+      // Gold spire on top
+      const spireGeo = new THREE.CylinderGeometry(0, 0.08, 1.2, 6);
+      const spire = new THREE.Mesh(spireGeo, gold);
+      spire.position.y = 2.4;
+      group.add(spire);
+
+      // Gold spire on second tower
+      const spire2 = new THREE.Mesh(new THREE.CylinderGeometry(0, 0.05, 0.7, 6), gold);
+      spire2.position.set(1.1, 0.95, 0);
+      group.add(spire2);
+
+      // Crane arm
+      const cranePost = new THREE.Mesh(new THREE.BoxGeometry(0.08, 2, 0.08), gold);
+      cranePost.position.set(-1.2, 0.5, 0);
+      group.add(cranePost);
+
+      const craneArm = new THREE.Mesh(new THREE.BoxGeometry(1.8, 0.06, 0.06), gold);
+      craneArm.position.set(-0.5, 1.5, 0);
+      group.add(craneArm);
+
+      // Small floating particles around building
+      for (let i = 0; i < 20; i++) {
+        const dot = new THREE.Mesh(
+          new THREE.SphereGeometry(0.03, 6, 6),
+          new THREE.MeshStandardMaterial({ color: 0xe8a020, emissive: 0xe8a020, emissiveIntensity: 0.5 })
+        );
+        dot.position.set(
+          (Math.random() - 0.5) * 4,
+          (Math.random() - 0.5) * 5,
+          (Math.random() - 0.5) * 2
+        );
+        dot.userData = { speed: Math.random() * 0.01 + 0.005, offset: Math.random() * Math.PI * 2 };
+        group.add(dot);
+      }
+
+      scene.add(group);
+      camera.position.set(0, 0.5, 8);
+      camera.lookAt(0, 0, 0);
+
+      let t = 0;
+      function animate() {
+        requestAnimationFrame(animate);
+        t += 0.008;
+        group.rotation.y = t * 0.4;
+
+        // Animate floating particles
+        group.children.forEach(child => {
+          if (child.userData.speed) {
+            child.position.y += Math.sin(t * 2 + child.userData.offset) * 0.003;
+          }
+        });
+
+        renderer.render(scene, camera);
+      }
+      animate();
+
+      // Resize handler
+      window.addEventListener('resize', () => {
+        const size = Math.min(window.innerWidth * 0.35, 420);
+        if (window.innerWidth < 768) {
+          canvas.style.display = 'none';
+        } else {
+          canvas.style.display = 'block';
+          renderer.setSize(size, size);
+          canvas.style.width = size + 'px';
+          canvas.style.height = size + 'px';
+        }
+      });
+      if (window.innerWidth < 768) canvas.style.display = 'none';
+    })();
+
+    // ===== 3D TILT EFFECT ON CARDS =====
+    document.querySelectorAll('.tilt-card').forEach(card => {
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const cx = rect.width / 2;
+        const cy = rect.height / 2;
+        const rotX = ((y - cy) / cy) * -10;
+        const rotY = ((x - cx) / cx) * 10;
+        card.style.transform = `perspective(800px) rotateX(${rotX}deg) rotateY(${rotY}deg) translateY(-8px) scale(1.02)`;
+        card.style.boxShadow = `${-rotY * 2}px ${rotX * 2}px 30px rgba(232,160,32,0.3)`;
+      });
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = '';
+        card.style.boxShadow = '';
+      });
+    });
+
 
     // Preloader
     window.addEventListener('load', () => {
@@ -1636,27 +2021,275 @@
       const btn = form.querySelector('button[type="submit"]');
       btn.textContent = 'Sending...';
       try {
-        const res = await fetch("https://script.google.com/macros/library/d/1PAzvwnhFEcxUjOjMesdjeLG1yNifcr9m7wBWr2cDDG_WdKxILP5ejwF6/5",{
-        method:"POST",
-        mode:"no-cors",
-body:JSON.stringify({
-name:form.name.value,
-email:form.email.value,
-phone:form.phone.value,
-message:form.message.value
-})
-});
-          alert("✅ Quote Request Submitted Successfully!");
-form.reset();
-  }
-  catch(err) {
-alert("❌ Failed to send message");
-console.log(err);
-}
-    btn.innerHTML = '<i data-lucide="send"></i> Send Message';
-lucide.createIcons();
-    });
-</script>
+        const res = await fetch(form.action, {
+          method: 'POST',
+          body: new FormData(form),
+          headers: { 'Accept': 'application/json' }
+        });
+        if (res.ok) {
+          document.getElementById('formSuccess').classList.add('show');
+          form.reset();
+        }
+      } catch(err) {}
+      btn.innerHTML = '<i data-lucide="send"></i> Send Message';
+      lucide.createIcons();
 
+    // ===== CANVAS PARTICLES =====
+    const pCanvas = document.getElementById('particleCanvas');
+    const pCtx = pCanvas.getContext('2d');
+    let particles = [];
+
+    function resizeParticles() {
+      pCanvas.width = window.innerWidth;
+      pCanvas.height = window.innerHeight;
+    }
+    resizeParticles();
+    window.addEventListener('resize', resizeParticles);
+
+    for (let i = 0; i < 80; i++) {
+      particles.push({
+        x: Math.random() * window.innerWidth,
+        y: Math.random() * window.innerHeight,
+        vx: (Math.random() - 0.5) * 0.5,
+        vy: (Math.random() - 0.5) * 0.5,
+        r: Math.random() * 2 + 1
+      });
+    }
+
+    function drawParticles() {
+      pCtx.clearRect(0, 0, pCanvas.width, pCanvas.height);
+      particles.forEach(p => {
+        p.x += p.vx; p.y += p.vy;
+        if (p.x < 0) p.x = pCanvas.width;
+        if (p.x > pCanvas.width) p.x = 0;
+        if (p.y < 0) p.y = pCanvas.height;
+        if (p.y > pCanvas.height) p.y = 0;
+        pCtx.beginPath();
+        pCtx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        pCtx.fillStyle = 'rgba(232,160,32,0.6)';
+        pCtx.fill();
+      });
+      // Draw lines between close particles
+      for (let i = 0; i < particles.length; i++) {
+        for (let j = i + 1; j < particles.length; j++) {
+          const dx = particles[i].x - particles[j].x;
+          const dy = particles[i].y - particles[j].y;
+          const dist = Math.sqrt(dx*dx + dy*dy);
+          if (dist < 120) {
+            pCtx.beginPath();
+            pCtx.moveTo(particles[i].x, particles[i].y);
+            pCtx.lineTo(particles[j].x, particles[j].y);
+            pCtx.strokeStyle = `rgba(232,160,32,${0.15 * (1 - dist/120)})`;
+            pCtx.lineWidth = 0.5;
+            pCtx.stroke();
+          }
+        }
+      }
+      requestAnimationFrame(drawParticles);
+    }
+    drawParticles();
+
+    // ===== 3D ROTATING BUILDING =====
+    (function() {
+      const canvas = document.getElementById('building3d');
+      if (!canvas) return;
+      const scene = new THREE.Scene();
+      const camera = new THREE.PerspectiveCamera(45, 1, 0.1, 1000);
+      const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+      renderer.setSize(420, 420);
+      renderer.setPixelRatio(window.devicePixelRatio);
+
+      // Ambient light
+      scene.add(new THREE.AmbientLight(0xffffff, 0.4));
+
+      // Gold directional light
+      const dirLight = new THREE.DirectionalLight(0xe8a020, 1.5);
+      dirLight.position.set(5, 10, 5);
+      scene.add(dirLight);
+
+      // White fill light
+      const fillLight = new THREE.DirectionalLight(0xffffff, 0.5);
+      fillLight.position.set(-5, 5, -5);
+      scene.add(fillLight);
+
+      const gold = new THREE.MeshStandardMaterial({ color: 0xe8a020, metalness: 0.8, roughness: 0.2 });
+      const silver = new THREE.MeshStandardMaterial({ color: 0x888888, metalness: 0.9, roughness: 0.1 });
+      const dark = new THREE.MeshStandardMaterial({ color: 0x1a1a1a, metalness: 0.5, roughness: 0.3 });
+      const glass = new THREE.MeshStandardMaterial({ color: 0x88ccff, metalness: 0.1, roughness: 0.0, transparent: true, opacity: 0.6 });
+
+      const group = new THREE.Group();
+
+      // Main tower base
+      const base = new THREE.Mesh(new THREE.BoxGeometry(1.8, 0.3, 1.8), dark);
+      base.position.y = -2.5;
+      group.add(base);
+
+      // Main tower body
+      const tower = new THREE.Mesh(new THREE.BoxGeometry(1.4, 4, 1.4), silver);
+      tower.position.y = -0.3;
+      group.add(tower);
+
+      // Glass windows on tower
+      for (let i = 0; i < 5; i++) {
+        const win = new THREE.Mesh(new THREE.BoxGeometry(1.1, 0.5, 0.05), glass);
+        win.position.set(0, -1.8 + i * 0.8, 0.73);
+        group.add(win);
+        const win2 = win.clone();
+        win2.position.z = -0.73;
+        group.add(win2);
+      }
+
+      // Gold trim lines on tower
+      for (let i = 0; i < 3; i++) {
+        const trim = new THREE.Mesh(new THREE.BoxGeometry(1.45, 0.06, 1.45), gold);
+        trim.position.y = -1.5 + i * 1.2;
+        group.add(trim);
+      }
+
+      // Secondary smaller tower
+      const tower2 = new THREE.Mesh(new THREE.BoxGeometry(0.7, 2.5, 0.7), dark);
+      tower2.position.set(1.1, -0.9, 0);
+      group.add(tower2);
+
+      // Gold spire on top
+      const spireGeo = new THREE.CylinderGeometry(0, 0.08, 1.2, 6);
+      const spire = new THREE.Mesh(spireGeo, gold);
+      spire.position.y = 2.4;
+      group.add(spire);
+
+      // Gold spire on second tower
+      const spire2 = new THREE.Mesh(new THREE.CylinderGeometry(0, 0.05, 0.7, 6), gold);
+      spire2.position.set(1.1, 0.95, 0);
+      group.add(spire2);
+
+      // Crane arm
+      const cranePost = new THREE.Mesh(new THREE.BoxGeometry(0.08, 2, 0.08), gold);
+      cranePost.position.set(-1.2, 0.5, 0);
+      group.add(cranePost);
+
+      const craneArm = new THREE.Mesh(new THREE.BoxGeometry(1.8, 0.06, 0.06), gold);
+      craneArm.position.set(-0.5, 1.5, 0);
+      group.add(craneArm);
+
+      // Small floating particles around building
+      for (let i = 0; i < 20; i++) {
+        const dot = new THREE.Mesh(
+          new THREE.SphereGeometry(0.03, 6, 6),
+          new THREE.MeshStandardMaterial({ color: 0xe8a020, emissive: 0xe8a020, emissiveIntensity: 0.5 })
+        );
+        dot.position.set(
+          (Math.random() - 0.5) * 4,
+          (Math.random() - 0.5) * 5,
+          (Math.random() - 0.5) * 2
+        );
+        dot.userData = { speed: Math.random() * 0.01 + 0.005, offset: Math.random() * Math.PI * 2 };
+        group.add(dot);
+      }
+
+      scene.add(group);
+      camera.position.set(0, 0.5, 8);
+      camera.lookAt(0, 0, 0);
+
+      let t = 0;
+      function animate() {
+        requestAnimationFrame(animate);
+        t += 0.008;
+        group.rotation.y = t * 0.4;
+
+        // Animate floating particles
+        group.children.forEach(child => {
+          if (child.userData.speed) {
+            child.position.y += Math.sin(t * 2 + child.userData.offset) * 0.003;
+          }
+        });
+
+        renderer.render(scene, camera);
+      }
+      animate();
+
+      // Resize handler
+      window.addEventListener('resize', () => {
+        const size = Math.min(window.innerWidth * 0.35, 420);
+        if (window.innerWidth < 768) {
+          canvas.style.display = 'none';
+        } else {
+          canvas.style.display = 'block';
+          renderer.setSize(size, size);
+          canvas.style.width = size + 'px';
+          canvas.style.height = size + 'px';
+        }
+      });
+      if (window.innerWidth < 768) canvas.style.display = 'none';
+    })();
+
+    // ===== 3D TILT EFFECT ON CARDS =====
+    document.querySelectorAll('.tilt-card').forEach(card => {
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const cx = rect.width / 2;
+        const cy = rect.height / 2;
+        const rotX = ((y - cy) / cy) * -10;
+        const rotY = ((x - cx) / cx) * 10;
+        card.style.transform = `perspective(800px) rotateX(${rotX}deg) rotateY(${rotY}deg) translateY(-8px) scale(1.02)`;
+        card.style.boxShadow = `${-rotY * 2}px ${rotX * 2}px 30px rgba(232,160,32,0.3)`;
+      });
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = '';
+        card.style.boxShadow = '';
+      });
+    });
+
+    });
+
+    // ===== LIGHTBOX =====
+    function openLightbox(wrap) {
+      const img = wrap.querySelector('.project-img');
+      const caption = wrap.closest('.project-card').querySelector('h3').textContent;
+      document.getElementById('lightboxImg').src = img.src;
+      document.getElementById('lightboxImg').alt = img.alt;
+      document.getElementById('lightboxCaption').textContent = caption;
+      document.getElementById('lightbox').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox(e) {
+      if (!e || e.target === document.getElementById('lightbox') || e.target.classList.contains('lightbox-close')) {
+        document.getElementById('lightbox').classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    }
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') closeLightbox({target: document.getElementById('lightbox')});
+    });
+
+
+    // ===== LIGHTBOX =====
+    function openLightbox(wrap) {
+      const img = wrap.querySelector('img');
+      const card = wrap.closest('.project-card');
+      const caption = card ? card.querySelector('h3').textContent : '';
+      document.getElementById('lightboxImg').src = img.src;
+      document.getElementById('lightboxImg').alt = img.alt;
+      document.getElementById('lightboxCaption').textContent = caption;
+      document.getElementById('lightbox').classList.add('active');
+      document.body.style.overflow = 'hidden';
+      lucide.createIcons();
+    }
+
+    function closeLightbox(e) {
+      if (!e || e.target === document.getElementById('lightbox') || e.target.classList.contains('lightbox-close')) {
+        document.getElementById('lightbox').classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    }
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') closeLightbox({target: document.getElementById('lightbox')});
+    });
+
+  </script>
 </body>
 </html>
