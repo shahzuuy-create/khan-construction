@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Why Choose Us - Khan Construction</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏗️</text></svg>">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=Raleway:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --gold: #e8a020;
+      --gold-light: #f5b030;
+      --dark: #0a0a0a;
+      --dark2: #111111;
+      --dark3: #1a1a1a;
+      --dark4: #222222;
+      --text: #bbbbbb;
+      --text-light: #777777;
+      --white: #ffffff;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Raleway', sans-serif; background: var(--dark); color: var(--text); overflow-x: hidden; }
+
+    /* NAVBAR */
+    .navbar { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 0 2rem; height: 70px; display: flex; align-items: center; justify-content: space-between; background: rgba(10,10,10,0.97); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(232,160,32,0.15); }
+    .logo { display: flex; align-items: center; gap: 0.7rem; text-decoration: none; color: var(--white); }
+    .logo-box { width: 38px; height: 38px; background: var(--gold); border-radius: 8px; display: flex; align-items: center; justify-content: center; }
+    .logo-box i { color: var(--dark); width: 20px; height: 20px; }
+    .logo-name { font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 700; }
+    .logo-name span { color: var(--gold); }
+    .nav-links { display: flex; list-style: none; gap: 2rem; align-items: center; }
+    .nav-links a { text-decoration: none; color: var(--text); font-size: 0.82rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; transition: color 0.3s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--gold); }
+    .nav-cta { background: var(--gold) !important; color: var(--dark) !important; padding: 0.5rem 1.3rem; border-radius: 4px; }
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; }
+    .hamburger span { display: block; width: 24px; height: 2px; background: var(--white); border-radius: 2px; }
+
+    /* HERO */
+    .page-hero { min-height: 45vh; background: linear-gradient(135deg, #0a0a0a 0%, #1a1000 50%, #0a0a0a 100%); display: flex; align-items: center; justify-content: center; text-align: center; padding-top: 70px; position: relative; overflow: hidden; }
+    .page-hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at center, rgba(232,160,32,0.12) 0%, transparent 70%); }
+    .hero-content { position: relative; z-index: 1; padding: 0 2rem; }
+    .hero-label { color: var(--gold); font-size: 0.78rem; letter-spacing: 0.3em; text-transform: uppercase; font-weight: 700; display: block; margin-bottom: 1rem; animation: fadeUp 0.8s 0.2s both; }
+    .hero-title { font-family: 'Playfair Display', serif; font-size: clamp(2.5rem, 5vw, 4.5rem); color: var(--white); line-height: 1.1; margin-bottom: 1rem; animation: fadeUp 0.8s 0.4s both; }
+    .hero-title span { color: var(--gold); }
+    .hero-desc { font-size: 1rem; line-height: 1.8; max-width: 560px; margin: 0 auto 1.5rem; animation: fadeUp 0.8s 0.6s both; }
+    .breadcrumb { display: flex; align-items: center; justify-content: center; gap: 0.5rem; font-size: 0.82rem; animation: fadeUp 0.8s 0.8s both; }
+    .breadcrumb a { color: var(--gold); text-decoration: none; }
+    .breadcrumb span { color: var(--text-light); }
+
+    /* FLOATING NUMBERS BG */
+    .hero-numbers { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+    .float-num { position: absolute; font-family: 'Playfair Display', serif; font-size: 8rem; font-weight: 900; color: rgba(232,160,32,0.03); line-height: 1; }
+
+    /* SECTIONS */
+    .section { padding: 5rem 2rem; }
+    .container { max-width: 1100px; margin: 0 auto; }
+    .section-label { color: var(--gold); font-size: 0.75rem; letter-spacing: 0.3em; text-transform: uppercase; font-weight: 700; display: block; margin-bottom: 0.8rem; }
+    .section-title { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 3vw, 2.8rem); color: var(--white); line-height: 1.2; margin-bottom: 1rem; }
+
+    /* REASONS GRID */
+    .reasons-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 3rem; }
+    .reason-card { background: var(--dark3); border: 1px solid rgba(255,255,255,0.05); border-radius: 12px; padding: 2rem; position: relative; overflow: hidden; transition: all 0.35s; }
+    .reason-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--gold); transform: scaleX(0); transition: transform 0.35s; transform-origin: left; }
+    .reason-card:hover { border-color: rgba(232,160,32,0.3); transform: translateY(-8px); box-shadow: 0 20px 50px rgba(0,0,0,0.5); }
+    .reason-card:hover::before { transform: scaleX(1); }
+    .reason-num { font-family: 'Playfair Display', serif; font-size: 3.5rem; font-weight: 900; color: rgba(232,160,32,0.08); position: absolute; top: 1rem; right: 1.2rem; line-height: 1; }
+    .reason-icon { width: 54px; height: 54px; background: rgba(232,160,32,0.1); border: 1px solid rgba(232,160,32,0.2); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 1.2rem; transition: all 0.3s; }
+    .reason-card:hover .reason-icon { background: rgba(232,160,32,0.2); }
+    .reason-icon i { color: var(--gold); width: 24px; height: 24px; }
+    .reason-card h3 { font-family: 'Playfair Display', serif; color: var(--white); font-size: 1.15rem; margin-bottom: 0.8rem; }
+    .reason-card p { font-size: 0.88rem; line-height: 1.7; }
+
+    /* STATS SECTION */
+    .stats-section { background: var(--dark2); padding: 5rem 2rem; }
+    .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; }
+    .stat-box { text-align: center; padding: 2.5rem 1rem; border-right: 1px solid rgba(255,255,255,0.06); position: relative; }
+    .stat-box:last-child { border-right: none; }
+    .stat-box::after { content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 0; height: 2px; background: var(--gold); transition: width 0.5s; }
+    .stat-box:hover::after { width: 60%; }
+    .stat-num { font-family: 'Playfair Display', serif; font-size: 3rem; color: var(--gold); font-weight: 900; line-height: 1; }
+    .stat-label { font-size: 0.78rem; color: var(--text); text-transform: uppercase; letter-spacing: 0.15em; margin-top: 0.5rem; }
+
+    /* COMPARISON TABLE */
+    .comparison-section { background: var(--dark3); padding: 5rem 2rem; }
+    .comparison-table { width: 100%; border-collapse: collapse; margin-top: 2.5rem; }
+    .comparison-table th { padding: 1.2rem 1.5rem; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; }
+    .comparison-table th:first-child { text-align: left; color: var(--text-light); width: 40%; }
+    .comparison-table th:nth-child(2) { background: var(--gold); color: var(--dark); border-radius: 8px 8px 0 0; }
+    .comparison-table th:nth-child(3) { color: var(--text-light); }
+    .comparison-table td { padding: 1rem 1.5rem; font-size: 0.88rem; border-bottom: 1px solid rgba(255,255,255,0.05); text-align: center; }
+    .comparison-table td:first-child { text-align: left; color: var(--white); font-weight: 500; }
+    .comparison-table td:nth-child(2) { background: rgba(232,160,32,0.05); }
+    .comparison-table tr:last-child td { border-bottom: none; }
+    .check { color: var(--gold); font-size: 1.1rem; }
+    .cross { color: #ff4444; font-size: 1.1rem; }
+
+    /* PROCESS */
+    .process-section { padding: 5rem 2rem; }
+    .process-steps { display: grid; grid-template-columns: repeat(5, 1fr); gap: 0; margin-top: 3rem; position: relative; }
+    .process-steps::before { content: ''; position: absolute; top: 35px; left: 10%; right: 10%; height: 2px; background: linear-gradient(90deg, var(--gold), rgba(232,160,32,0.1)); z-index: 0; }
+    .process-step { text-align: center; position: relative; z-index: 1; padding: 0 0.5rem; }
+    .step-circle { width: 70px; height: 70px; border-radius: 50%; background: var(--dark3); border: 2px solid var(--gold); display: flex; align-items: center; justify-content: center; margin: 0 auto 1.2rem; font-family: 'Playfair Display', serif; font-size: 1.5rem; color: var(--gold); font-weight: 700; transition: all 0.3s; }
+    .process-step:hover .step-circle { background: var(--gold); color: var(--dark); }
+    .process-step h4 { color: var(--white); font-size: 0.88rem; font-weight: 600; margin-bottom: 0.4rem; }
+    .process-step p { font-size: 0.78rem; line-height: 1.5; }
+
+    /* TESTIMONIALS */
+    .testi-section { background: var(--dark2); padding: 5rem 2rem; }
+    .testi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 3rem; }
+    .testi-card { background: var(--dark3); border: 1px solid rgba(255,255,255,0.05); border-radius: 12px; padding: 2rem; transition: all 0.3s; }
+    .testi-card:hover { border-color: rgba(232,160,32,0.25); transform: translateY(-5px); }
+    .quote { color: var(--gold); opacity: 0.3; font-size: 3.5rem; font-family: Georgia, serif; line-height: 1; margin-bottom: 0.5rem; }
+    .stars { display: flex; gap: 3px; margin-bottom: 1rem; }
+    .stars i { color: var(--gold); width: 13px; height: 13px; }
+    .testi-text { font-size: 0.88rem; line-height: 1.8; font-style: italic; margin-bottom: 1.5rem; }
+    .testi-author { display: flex; align-items: center; gap: 0.8rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.06); }
+    .testi-av { width: 42px; height: 42px; border-radius: 50%; background: var(--gold); display: flex; align-items: center; justify-content: center; font-family: 'Playfair Display', serif; font-size: 0.95rem; color: var(--dark); font-weight: 700; flex-shrink: 0; }
+    .testi-name { color: var(--white); font-size: 0.88rem; font-weight: 600; }
+    .testi-role { color: var(--text-light); font-size: 0.75rem; }
+
+    /* CTA */
+    .cta-section { padding: 6rem 2rem; text-align: center; background: linear-gradient(135deg, #1a1000, #0a0a0a); border-top: 1px solid rgba(232,160,32,0.15); }
+    .cta-section h2 { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 3vw, 3rem); color: var(--white); margin-bottom: 1rem; }
+    .cta-section p { font-size: 1rem; max-width: 500px; margin: 0 auto 2.5rem; line-height: 1.8; }
+    .cta-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.9rem 2.2rem; border-radius: 4px; font-weight: 700; font-size: 0.85rem; text-decoration: none; letter-spacing: 0.06em; text-transform: uppercase; transition: all 0.3s; }
+    .btn-primary { background: var(--gold); color: var(--dark); }
+    .btn-primary:hover { background: var(--gold-light); transform: translateY(-3px); box-shadow: 0 10px 30px rgba(232,160,32,0.35); }
+    .btn-outline { background: transparent; color: var(--white); border: 1px solid rgba(255,255,255,0.3); }
+    .btn-outline:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-3px); }
+
+    /* FOOTER */
+    footer { background: #050505; padding: 2rem; text-align: center; border-top: 1px solid rgba(255,255,255,0.05); color: var(--text-light); font-size: 0.82rem; }
+    footer a { color: var(--gold); text-decoration: none; }
+
+    /* ANIMATIONS */
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+    .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) { .reasons-grid { grid-template-columns: repeat(2,1fr); } .stats-grid { grid-template-columns: repeat(2,1fr); } .process-steps { grid-template-columns: repeat(3,1fr); } .process-steps::before { display: none; } .testi-grid { grid-template-columns: 1fr; } }
+    @media (max-width: 600px) { .reasons-grid, .testi-grid { grid-template-columns: 1fr; } .nav-links { display: none; } .nav-links.open { display: flex; flex-direction: column; position: fixed; top: 70px; left: 0; right: 0; background: rgba(10,10,10,0.98); padding: 2rem; gap: 1.5rem; z-index: 999; } .hamburger { display: flex; } .comparison-table { font-size: 0.78rem; } .process-steps { grid-template-columns: repeat(2,1fr); } }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <a href="index.html" class="logo">
+      <div class="logo-box"><i data-lucide="hard-hat"></i></div>
+      <div><div class="logo-name">Khan <span>Construction</span></div></div>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="why-us.html" class="active">Why Us</a></li>
+      <li><a href="index.html#contact" class="nav-cta">Get a Quote</a></li>
+    </ul>
+    <button class="hamburger" onclick="document.getElementById('navLinks').classList.toggle('open')">
+      <span></span><span></span><span></span>
+    </button>
+  </header>
+
+  <!-- HERO -->
+  <section class="page-hero">
+    <div class="hero-numbers">
+      <span class="float-num" style="top:10%;left:5%">15</span>
+      <span class="float-num" style="top:20%;right:8%">50</span>
+      <span class="float-num" style="bottom:15%;left:15%">100</span>
+    </div>
+    <div class="hero-content">
+      <span class="hero-label">Our Advantage</span>
+      <h1 class="hero-title">Why Choose <span>Khan Construction?</span></h1>
+      <p class="hero-desc">We don't just build structures — we build trust, relationships, and legacies that stand the test of time.</p>
+      <div class="breadcrumb">
+        <a href="index.html">Home</a>
+        <span>›</span>
+        <span>Why Choose Us</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- REASONS -->
+  <section class="section">
+    <div class="container">
+      <div style="text-align:center" class="reveal">
+        <span class="section-label">Our Strengths</span>
+        <h2 class="section-title">6 Reasons to Choose Us</h2>
+        <p style="max-width:550px;margin:0 auto;font-size:0.95rem;line-height:1.8">Every project we take on is a reflection of our commitment to excellence, safety, and client satisfaction.</p>
+      </div>
+      <div class="reasons-grid">
+        <div class="reason-card reveal">
+          <div class="reason-num">01</div>
+          <div class="reason-icon"><i data-lucide="award"></i></div>
+          <h3>15+ Years Experience</h3>
+          <p>Founded in 2015, Khan Construction has over 15 years of proven expertise in delivering complex residential and commercial projects across Maharashtra.</p>
+        </div>
+        <div class="reason-card reveal">
+          <div class="reason-num">02</div>
+          <div class="reason-icon"><i data-lucide="shield-check"></i></div>
+          <h3>Quality Assurance</h3>
+          <p>We use only premium certified materials and conduct rigorous quality checks at every stage of construction — from foundation to finishing.</p>
+        </div>
+        <div class="reason-card reveal">
+          <div class="reason-num">03</div>
+          <div class="reason-icon"><i data-lucide="clock"></i></div>
+          <h3>On-Time Delivery</h3>
+          <p>We respect your time. Our project management system ensures every milestone is met and your project is delivered on schedule without compromise.</p>
+        </div>
+        <div class="reason-card reveal">
+          <div class="reason-num">04</div>
+          <div class="reason-icon"><i data-lucide="hard-hat"></i></div>
+          <h3>Strict Safety Standards</h3>
+          <p>Industry-leading safety protocols are followed on every single project site. The wellbeing of our workers and clients is our top priority.</p>
+        </div>
+        <div class="reason-card reveal">
+          <div class="reason-num">05</div>
+          <div class="reason-icon"><i data-lucide="indian-rupee"></i></div>
+          <h3>Transparent Pricing</h3>
+          <p>No hidden costs, no surprises. We provide clear, detailed, and honest quotations from day one so you always know exactly what you're paying for.</p>
+        </div>
+        <div class="reason-card reveal">
+          <div class="reason-num">06</div>
+          <div class="reason-icon"><i data-lucide="users"></i></div>
+          <h3>Expert Engineering Team</h3>
+          <p>Our team of 15+ certified civil engineers and construction professionals brings expertise, precision, and passion to every project we undertake.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <section class="stats-section">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-box reveal"><div class="stat-num">50+</div><div class="stat-label">Projects Completed</div></div>
+        <div class="stat-box reveal"><div class="stat-num">15+</div><div class="stat-label">Years Experience</div></div>
+        <div class="stat-box reveal"><div class="stat-num">15+</div><div class="stat-label">Expert Engineers</div></div>
+        <div class="stat-box reveal"><div class="stat-num">100%</div><div class="stat-label">Client Satisfaction</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMPARISON -->
+  <section class="comparison-section">
+    <div class="container">
+      <div style="text-align:center" class="reveal">
+        <span class="section-label">The Difference</span>
+        <h2 class="section-title">Khan Construction vs Others</h2>
+        <p style="max-width:500px;margin:0 auto;font-size:0.95rem;line-height:1.8">See why clients consistently choose us over the competition.</p>
+      </div>
+      <table class="comparison-table reveal">
+        <thead>
+          <tr>
+            <th>Feature</th>
+            <th>🏗️ Khan Construction</th>
+            <th>Others</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Licensed & Certified Engineers</td><td><span class="check">✓ Yes</span></td><td><span class="cross">✗ Not Always</span></td></tr>
+          <tr><td>On-Time Project Delivery</td><td><span class="check">✓ Guaranteed</span></td><td><span class="cross">✗ Often Delayed</span></td></tr>
+          <tr><td>Transparent Fixed Pricing</td><td><span class="check">✓ Always</span></td><td><span class="cross">✗ Hidden Costs</span></td></tr>
+          <tr><td>Premium Quality Materials</td><td><span class="check">✓ Certified Only</span></td><td><span class="cross">✗ Varies</span></td></tr>
+          <tr><td>Free Consultation & Quotation</td><td><span class="check">✓ Free</span></td><td><span class="cross">✗ Charged</span></td></tr>
+          <tr><td>Post-Completion Support</td><td><span class="check">✓ Full Support</span></td><td><span class="cross">✗ Limited</span></td></tr>
+          <tr><td>Safety Standards Compliance</td><td><span class="check">✓ Strict</span></td><td><span class="cross">✗ Basic</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section class="process-section">
+    <div class="container">
+      <div style="text-align:center" class="reveal">
+        <span class="section-label">How We Work</span>
+        <h2 class="section-title">Our Simple 5-Step Process</h2>
+      </div>
+      <div class="process-steps">
+        <div class="process-step reveal">
+          <div class="step-circle">1</div>
+          <h4>Consultation</h4>
+          <p>We meet to understand your vision, requirements, and budget.</p>
+        </div>
+        <div class="process-step reveal">
+          <div class="step-circle">2</div>
+          <h4>Planning</h4>
+          <p>Our engineers create detailed plans and accurate cost estimates.</p>
+        </div>
+        <div class="process-step reveal">
+          <div class="step-circle">3</div>
+          <h4>Approval</h4>
+          <p>We handle all permits and regulatory approvals for you.</p>
+        </div>
+        <div class="process-step reveal">
+          <div class="step-circle">4</div>
+          <h4>Construction</h4>
+          <p>Expert team executes with quality materials and strict timelines.</p>
+        </div>
+        <div class="process-step reveal">
+          <div class="step-circle">5</div>
+          <h4>Handover</h4>
+          <p>Final inspection, quality check, and smooth project handover.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="testi-section">
+    <div class="container">
+      <div style="text-align:center" class="reveal">
+        <span class="section-label">Client Reviews</span>
+        <h2 class="section-title">What Our Clients Say</h2>
+      </div>
+      <div class="testi-grid">
+        <div class="testi-card reveal">
+          <div class="quote">"</div>
+          <div class="stars"><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i></div>
+          <p class="testi-text">Khan Construction completed our commercial complex on time and within budget. Their attention to detail and professionalism is outstanding.</p>
+          <div class="testi-author"><div class="testi-av">RS</div><div><div class="testi-name">Rajesh Sharma</div><div class="testi-role">Director, Sharma Builders</div></div></div>
+        </div>
+        <div class="testi-card reveal">
+          <div class="quote">"</div>
+          <div class="stars"><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i></div>
+          <p class="testi-text">They built our dream home with excellent craftsmanship. Nawaz Khan and his team were helpful and transparent throughout the entire project.</p>
+          <div class="testi-author"><div class="testi-av">PD</div><div><div class="testi-name">Priya Desai</div><div class="testi-role">Homeowner, Nagpur</div></div></div>
+        </div>
+        <div class="testi-card reveal">
+          <div class="quote">"</div>
+          <div class="stars"><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i></div>
+          <p class="testi-text">Khan Construction delivered our luxury apartment complex beautifully. The finishing quality and structural work exceeded all our expectations.</p>
+          <div class="testi-author"><div class="testi-av">AM</div><div><div class="testi-name">Anil Mehta</div><div class="testi-role">Property Developer, Nagpur</div></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="container">
+      <h2>Ready to Experience the <span style="color:var(--gold)">Difference?</span></h2>
+      <p>Join hundreds of satisfied clients who trusted Khan Construction to bring their dream projects to life.</p>
+      <div class="cta-btns">
+        <a href="index.html#contact" class="btn btn-primary"><i data-lucide="phone"></i> Get a Free Quote</a>
+        <a href="projects.html" class="btn btn-outline"><i data-lucide="folder-open"></i> View Our Projects</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2026 Khan Construction. All Rights Reserved. | <a href="index.html">Back to Home</a></p>
+  </footer>
+
+  <script>
+    lucide.createIcons();
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if(e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(r => observer.observe(r));
+  </script>
+</body>
+</html>
