@@ -171,8 +171,8 @@ img { max-width: 100%; height: auto; display: block; }
 .logo-icon { color: var(--secondary); }
 .logo span span { font-weight: 400; color: var(--secondary); }
 .logo img{
-width:35px;
-height:35px;
+width:28px;
+height:28px;
 object-fit:contain;
 display:block;
 }
