@@ -170,6 +170,11 @@ img { max-width: 100%; height: auto; display: block; }
 }
 .logo-icon { color: var(--secondary); }
 .logo span span { font-weight: 400; color: var(--secondary); }
+.logo img{
+width:55px;
+height:55px;
+object-fit:contain;
+}
 .nav-menu { display: flex; align-items: center; gap: 32px; }
 .nav-list { display: flex; gap: 28px; }
 .nav-link {
