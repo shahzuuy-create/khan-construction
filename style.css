@@ -171,21 +171,21 @@ img { max-width: 100%; height: auto; display: block; }
 .logo-icon { color: var(--secondary); }
 .logo span span { font-weight: 400; color: var(--secondary); }
 .logo img{
-width:28px;
-height:28px;
+width:45px;
+height:45px;
 object-fit:contain;
 display:block;
 }
 
 .logo-icon-box{
-width:55px;
-height:55px;
+width:52px;
+height:52px;
 overflow:hidden;
 display:flex;
 align-items:center;
 justify-content:center;
-background:#E5A823;
-border-radius:12px;
+background:transparent;
+border-radius:0px;
 }
 
 .logo-icon-box img{
