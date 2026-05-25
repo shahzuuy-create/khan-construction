@@ -184,6 +184,14 @@ overflow:hidden;
 display:flex;
 align-items:center;
 justify-content:center;
+background:#E5A823;
+border-radius:12px;
+}
+
+.logo-icon-box img{
+width:80%;
+height:80%;
+object-fit:contain;
 }
 .nav-menu { display: flex; align-items: center; gap: 32px; }
 .nav-list { display: flex; gap: 28px; }
