@@ -556,5 +556,27 @@
       });
     }
   </script>
+  <div class="lightbox" id="lightbox" onclick="closeLB(event)">
+  <button class="lb-close" onclick="closeLB()">&times;</button>
+  <img src="" alt="" id="lbImg">
+</div>
+
+<script>
+function openLB(wrap) {
+  const img = wrap.querySelector('img');
+  document.getElementById('lbImg').src = img.src;
+  document.getElementById('lightbox').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+function closeLB(e) {
+  if(!e || e.target === document.getElementById('lightbox') || e.target.classList.contains('lb-close')) {
+    document.getElementById('lightbox').classList.remove('active');
+    document.body.style.overflow = '';
+  }
+}
+document.addEventListener('keydown', e => {
+  if(e.key === 'Escape') closeLB({target: document.getElementById('lightbox')});
+});
+</script>
 </body>
 </html>
