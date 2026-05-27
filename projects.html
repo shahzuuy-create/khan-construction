@@ -218,6 +218,25 @@
     .project-card:hover .project-img { transform: scale(1.05); }
 
     .project-img-wrapper { overflow: hidden; position: relative; }
+    .zoom-btn {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%) scale(0);
+  width: 50px;
+  height: 50px;
+  background: #e8a020;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s;
+  pointer-events: none;
+  z-index: 2;
+}
+.project-img-wrapper:hover .zoom-btn {
+  transform: translate(-50%,-50%) scale(1);
+}
 
     .project-category-badge {
       position: absolute;
