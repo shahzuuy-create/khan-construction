@@ -376,6 +376,10 @@
       .nav-links { display: none; }
       .project-img { height: 220px; }
     }
+    C.lightbox { position: fixed; inset: 0; background: rgba(0,0,0,0.96); z-index: 9999; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0.3s; }
+.lightbox.active { opacity: 1; pointer-events: all; }
+.lightbox img { max-width: 90vw; max-height: 85vh; object-fit: contain; border-radius: 8px; }
+.lb-close { position: absolute; top: 1.5rem; right: 1.5rem; width: 46px; height: 46px; border-radius: 50%; background: rgba(232,160,32,0.2); border: 2px solid #e8a020; color: #e8a020; font-size: 1.6rem; cursor: pointer; display: flex; align-items: center; justify-content: center; }
   </style>
 </head>
 <body>
